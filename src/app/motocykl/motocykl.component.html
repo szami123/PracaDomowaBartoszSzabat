@@ -1,0 +1,53 @@
+<h1>{{brand}} {{model}}</h1>
+
+<ul>
+<li>Rocznik: {{year}}</li>
+  <li>Przebieg: {{mileage}} km</li>
+  <li>Pojemność: {{capacity}} cm^3</li>
+  <li>Moc: {{power}} KM</li>
+  <li>Rodzaj silnika: {{engine.xd}}, {{engine.cylinder}} cylindrowy</li>
+</ul>
+<div>
+  <button (click)="changeEditMode()">Edytuj motocykl</button>
+</div>
+
+<form (submit)="addOverview(overview.value)">
+  <div id="dodajprzeglad">
+    <label for="overviewField"><br>Krótki opis przeglądu: </label>
+    <input type= "text" #overview id="overviewField">
+
+  </div>
+</form>
+<button (click)="addOverview(overview.value)">Dodaj przegląd</button>
+
+
+<div id="lista">
+  <h2>Lista dokonanych przeglądów</h2>
+<ul >
+  <li *ngFor="let overview of overviews; let i = index">
+
+
+<button (click)="deleteOverview(overview)" >Usuń przegląd</button> {{i+1}}. {{overview}}
+  </li>
+</ul>
+  </div>
+
+
+<div *ngIf="editMode">
+  <h1>Edycja motocykla:</h1>
+    <form>
+      <div>
+        <label for="brand">Name:</label>
+        <input  type="text" [(ngModel)]="brand" name="brand">
+        <input  type="text" [(ngModel)]="model" name="model">
+        <input  type="number" [(ngModel)]="year" name="year">
+        <input  type="number" [(ngModel)]="mileage" name="mileage">
+        <input  type="number" [(ngModel)]="capacity" name="capacity">
+        <input  type="number" [(ngModel)]="power" name="power">
+        <input  type="text" [(ngModel)]="engine.xd" name="engine.xd">
+        <input  type="number" [(ngModel)]="engine.cylinder" name="engine.cylinder">
+      </div>
+    </form>
+  </div>
+
+
